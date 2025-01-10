@@ -16,7 +16,7 @@ export class UsersListComponent implements OnInit {
   users = signal<Array<User>>([]);
 
   ngOnInit(): void {
-    
+    this.loadUsers();
   }
 
   loadUsers(): void {

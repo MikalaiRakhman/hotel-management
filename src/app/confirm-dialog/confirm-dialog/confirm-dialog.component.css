@@ -1,0 +1,6 @@
+.content-container {
+    padding: 1rem;
+    min-height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+  }

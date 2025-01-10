@@ -5,7 +5,7 @@ import { UserService } from '../../services/user-service/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog'
 import { UsersEditComponent } from '../users-edit/users-edit.component';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 
 @Component({

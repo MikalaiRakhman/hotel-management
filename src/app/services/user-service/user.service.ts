@@ -31,5 +31,6 @@ export class UserService {
     console.error('Error occured!', error);
 
     return throwError(error);
+
   }
 }

@@ -69,4 +69,42 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
+
+  onEditUser(user: User): void {
+    const dialogRef = this.dialog.open(UsersEditComponent, {
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('User data after edit', result);
+        this.loadUsers();
+      }
+    })
+  }
+
+  onDeleteUser(userId: string): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {
+        title: 'Confirm deletion',
+        message: 'Are you sure you want to delete this user?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.userService.deleteUser(userId).subscribe({
+          next: () => {
+            console.log('user deleted');
+            this.snackbar.showError('test');
+          },
+          error: err => {
+            console.error('Error occured whilst deleting a user', err);
+            this.snackbar.showError(err);
+          },
+        });
+      }
+    });
+  }
 }

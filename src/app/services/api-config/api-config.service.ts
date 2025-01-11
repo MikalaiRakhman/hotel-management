@@ -13,4 +13,8 @@ export class ApiConfigService {
   get usersUrl() {
     return `${this.baseUrl}/Users`;
   }
+
+  get roomsUrl() {
+    return `${this.baseUrl}/Rooms`
+  }
 }

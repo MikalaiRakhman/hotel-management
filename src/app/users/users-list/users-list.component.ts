@@ -17,8 +17,8 @@ import { SnackbarService } from '../../services/snackbar/snackbar.service';
 })
 export class UsersListComponent implements OnInit {
   userService = inject(UserService);
-  snackbar = inject(SnackbarService)
-  dialog = inject(MatDialog)
+  snackbar = inject(SnackbarService);
+  dialog = inject(MatDialog);
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'actions']
   users = signal<Array<User>>([]);
@@ -28,7 +28,8 @@ export class UsersListComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.userService.getUsers().subscribe((data: Array<User>) => {this.users.set(data)})
+    this.userService.getUsers().subscribe((data: Array<User>) => 
+      {this.users.set(data)})
   }
 
   onEditUser(user: User): void {

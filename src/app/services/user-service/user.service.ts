@@ -16,7 +16,8 @@ export class UserService {
   
 
   getUsers(): Observable<Array<User>>{
-    return this.http.get<Array<User>>(this.api.usersUrl).pipe(catchError(this.handleError));
+    return this.http.get<Array<User>>(this.api.usersUrl)
+    .pipe(catchError(this.handleError));
   }
 
   updateUser(id: string, user: UserUpdate): Observable<void> {
@@ -31,6 +32,5 @@ export class UserService {
     console.error('Error occured!', error);
 
     return throwError(error);
-
   }
 }

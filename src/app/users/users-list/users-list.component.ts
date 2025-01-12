@@ -62,6 +62,7 @@ export class UsersListComponent implements OnInit {
           },
           error: err => {
             console.error('Something went wrong. User not deleted', err);
+
             this.snackbar.showError(err);
           },
         });

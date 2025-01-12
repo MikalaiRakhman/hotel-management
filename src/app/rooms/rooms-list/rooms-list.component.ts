@@ -10,6 +10,7 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
 import { RoomCreate } from '../../models/room/room-create';
 import { RoomsCreateComponent } from '../rooms-create/rooms-create.component';
 
+
 @Component({
   selector: 'app-rooms-list',
   imports: [MatTableModule, MatButtonModule],
@@ -22,6 +23,7 @@ export class RoomsListComponent implements OnInit {
   dialog = inject(MatDialog);
 
   displayedColumns: string[] = ['id', 'roomNumber', 'roomType', 'pricePerNight', 'isAvailable', 'actions'];
+
   rooms = signal<Array<Room>>([]);
 
   ngOnInit(): void {
@@ -78,5 +80,5 @@ export class RoomsListComponent implements OnInit {
       }
     });
   }
-  
+
 }

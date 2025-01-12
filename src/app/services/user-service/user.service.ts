@@ -5,15 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfigService } from '../api-config/api-config.service';
 import { UserUpdate } from '../../models/user/user-update.type';
 
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
   http = inject(HttpClient);
-  api = inject(ApiConfigService);
-  
+  api = inject(ApiConfigService);  
 
   getUsers(): Observable<Array<User>>{
     return this.http.get<Array<User>>(this.api.usersUrl)

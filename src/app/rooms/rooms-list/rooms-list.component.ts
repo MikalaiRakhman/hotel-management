@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { RoomService } from '../../services/room-service/room.service';
 import { Room } from '../../models/room/room.type';
+import { RoomsEditComponent } from '../rooms-edit/rooms-edit.component';
 
 @Component({
   selector: 'app-rooms-list',
@@ -17,7 +18,7 @@ export class RoomsListComponent implements OnInit {
   snackbar = inject(SnackbarService);
   dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['id', 'roomNumber', 'roomType', 'pricePerNight', 'isAvailable'];
+  displayedColumns: string[] = ['id', 'roomNumber', 'roomType', 'pricePerNight', 'isAvailable', 'actions'];
   rooms = signal<Array<Room>>([]);
 
   ngOnInit(): void {
@@ -27,5 +28,18 @@ export class RoomsListComponent implements OnInit {
   loadRooms(): void {
     this.roomService.getRooms().subscribe((data: Array<Room>) =>
       {this.rooms.set(data)})
-  }  
+  }
+
+  onEditRoom(room: Room): void {
+    const dialogRef = this.dialog.open(RoomsEditComponent, {
+      data: room,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Room data after edit', result);
+      }
+    })
+  }
+  
 }

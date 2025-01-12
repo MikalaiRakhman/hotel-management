@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatTableModule} from '@angular/material/table'
-import { User } from '../../models/user.type'
+import { User } from '../../models/user/user.type'
 import { UserService } from '../../services/user-service/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog'

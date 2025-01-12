@@ -35,6 +35,6 @@ export class RoomService {
   private handleError(error: any) {
       console.error('Error occured!', error);
 
-      return throwError(error);
-    }
+      return throwError(error);  
+  }
 }

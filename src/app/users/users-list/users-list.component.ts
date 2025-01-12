@@ -59,10 +59,9 @@ export class UsersListComponent implements OnInit {
         this.userService.deleteUser(userId).subscribe({
           next: () => {
             console.log('user deleted');
-            this.snackbar.showError('test');
           },
           error: err => {
-            console.error('Error occured whilst deleting a user', err);
+            console.error('Something went wrong. User not deleted', err);
             this.snackbar.showError(err);
           },
         });

@@ -1,3 +1,7 @@
+<div>
+  <button mat-stroked-button (click)="onCreateRoom()">Create new room</button>
+</div>
+
 <table mat-table [dataSource]="rooms()" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
@@ -29,7 +33,7 @@
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
           <mat-cell *matCellDef="let room">
             <button mat-stroked-button (click)="onEditRoom(room)">Edit</button>
-            <button mat-stroked-button>Delete</button>
+            <button mat-stroked-button (click)="onDeleteRoom(room.id)">Delete</button>
           </mat-cell>
       </ng-container>
   

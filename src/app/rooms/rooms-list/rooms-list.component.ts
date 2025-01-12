@@ -7,7 +7,6 @@ import { RoomService } from '../../services/room-service/room.service';
 import { Room } from '../../models/room/room.type';
 import { RoomsEditComponent } from '../rooms-edit/rooms-edit.component';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { RoomCreate } from '../../models/room/room-create';
 import { RoomsCreateComponent } from '../rooms-create/rooms-create.component';
 
 @Component({
@@ -40,7 +39,7 @@ export class RoomsListComponent implements OnInit {
 
   loadRooms(): void {
     this.roomService.getRooms().subscribe((data: Array<Room>) =>
-      {this.rooms.set(data)})
+      {this.rooms.set(data)});
   }
 
   onEditRoom(room: Room): void {

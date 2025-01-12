@@ -15,6 +15,10 @@ export class ApiConfigService {
   }
 
   get roomsUrl() {
-    return `${this.baseUrl}/Rooms`
+    return `${this.baseUrl}/Rooms`;
+  }
+
+  get bookingsUrl() {
+    return `${this.baseUrl}/Bookings`;
   }
 }

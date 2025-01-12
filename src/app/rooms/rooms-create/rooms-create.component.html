@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <ng-container *ngIf="room">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Room number</mat-label>
+        <input matInput [(ngModel)]="room.roomNumber" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Type</mat-label>
+        <input matInput [(ngModel)]="room.roomType" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Price per night</mat-label>
+        <input matInput [(ngModel)]="room.pricePerNight" />
+      </mat-form-field>
+    </ng-container>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <button mat-button (click)="onClose()">Cancel</button>
+    <button mat-button (click)="onSave()">Save</button>
+  </mat-dialog-actions>

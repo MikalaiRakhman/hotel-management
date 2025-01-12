@@ -1,10 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { User } from '../../models/user.type'
+import { User } from '../../models/user/user.type'
 import { HttpClient } from '@angular/common/http';
 import { ApiConfigService } from '../api-config/api-config.service';
-import { UserUpdate } from '../../models/user-update.type';
-
+import { UserUpdate } from '../../models/user/user-update.type';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,7 @@ import { UserUpdate } from '../../models/user-update.type';
 
 export class UserService {
   http = inject(HttpClient);
-  api = inject(ApiConfigService);
-  
+  api = inject(ApiConfigService);  
 
   getUsers(): Observable<Array<User>>{
     return this.http.get<Array<User>>(this.api.usersUrl)
@@ -21,7 +19,8 @@ export class UserService {
   }
 
   updateUser(id: string, user: UserUpdate): Observable<void> {
-    return this.http.put<void>(`${this.api.usersUrl}/${id}`, user).pipe(catchError(this.handleError));
+    return this.http.put<void>(`${this.api.usersUrl}/${id}`, user)
+    .pipe(catchError(this.handleError));
   }
 
   deleteUser(id: string): Observable<void> {

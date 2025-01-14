@@ -21,4 +21,12 @@ export class ApiConfigService {
   get bookingsUrl() {
     return `${this.baseUrl}/Bookings`;
   }
+
+  get apiAuthLoginUrl() {
+    return `${this.baseUrl}/Auth/login`;
+  }
+
+  get apiAuthRegisterUrl() {
+    return `${this.baseUrl}/Auth/register`;
+  }
 }

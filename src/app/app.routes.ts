@@ -23,6 +23,12 @@ export const routes: Routes = [
         component: BookingsListComponent
     },
     {
+        path:'register',
+    },
+    {
+        path:'login',
+    },
+    {
         path:'error',
         component: ErrorPageComponent
     },

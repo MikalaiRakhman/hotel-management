@@ -6,6 +6,7 @@ import { BookingsListComponent } from './bookings/bookings-list/bookings-list.co
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
     {
@@ -14,7 +15,8 @@ export const routes: Routes = [
     },
     {
         path:'users', 
-        component: UsersListComponent
+        component: UsersListComponent,
+        canActivate: [authGuard],
     },
     {
         path:'rooms',

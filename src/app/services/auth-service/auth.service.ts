@@ -21,12 +21,16 @@ export class AuthService {
     }
   }
 
-  async login(userData: ILoginRequest) {
+  login(userData: ILoginRequest) {
     try {
-    return await firstValueFrom(this.http.post<{token: string, refreshToken: string}>(`${this.config.apiAuthLoginUrl}`, userData));
+    return firstValueFrom(this.http.post<{token: string, refreshToken: string}>(`${this.config.apiAuthLoginUrl}`, userData));
     } catch (error) {
       console.error('Login error',error);
       throw error;
     }
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
   }
 }

@@ -35,7 +35,10 @@ export class LoginComponent {
         const formValues: ILoginRequest = this.loginForm.value;
 
         try {
-          const response = await this.authService.login(formValues).then(response => localStorage.setItem('authToken', response.token));
+          const response = await this.authService.login(formValues).then(response => {
+            localStorage.setItem('authToken', response.token),
+            localStorage.setItem('refreshToken', response.refreshToken)
+          });
           console.log('Login successful', response);
           this.router.navigate(['']);
         } catch (error) {

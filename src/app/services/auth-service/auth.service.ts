@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from '../api-config/api-config.service';
 import { HttpClient } from '@angular/common/http';
 import { IRegisterRequest } from '../../interfaces/iregister-request';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 import { ILoginRequest } from '../../interfaces/ilogin-request';
 
 @Injectable({
@@ -32,5 +32,9 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('authToken');
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refreshToken');
   }
 }

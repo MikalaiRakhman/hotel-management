@@ -29,4 +29,8 @@ export class ApiConfigService {
   get apiAuthRegisterUrl() {
     return `${this.baseUrl}/Auth/register`;
   }
+
+  get apiAuthRefreshUrl() {
+    return `${this.baseUrl}/Auth/refresh-token`;
+  }
 }

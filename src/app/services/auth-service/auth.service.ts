@@ -3,6 +3,7 @@ import { ApiConfigService } from '../api-config/api-config.service';
 import { HttpClient } from '@angular/common/http';
 import { IRegisterRequest } from '../../interfaces/iregister-request';
 import { firstValueFrom } from 'rxjs';
+import { ILoginRequest } from '../../interfaces/ilogin-request';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,15 @@ export class AuthService {
       return await firstValueFrom(this.http.post(`${this.config.apiAuthRegisterUrl}`, userData));
     } catch (error) {
       console.error(error);
+      throw error;
+    }
+  }
+
+  async login(userData: ILoginRequest) {
+    try {
+    return await firstValueFrom(this.http.post<{token: string, refreshToken: string}>(`${this.config.apiAuthLoginUrl}`, userData));
+    } catch (error) {
+      console.error('Login error',error);
       throw error;
     }
   }

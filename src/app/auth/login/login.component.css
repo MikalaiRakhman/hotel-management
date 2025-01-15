@@ -1,0 +1,53 @@
+.login-card {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .login-card mat-card-header {
+    text-align: center;
+    background-color: #2b2625;
+    color: rgb(255, 255, 255);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
+  }
+  
+  .login-card mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .login-card mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  button[mat-raised-button] {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #6200ea;
+    color: white;
+  }
+  
+  button[mat-raised-button]:hover {
+    background-color: #3700b3;
+  }
+  
+  mat-error {
+    font-size: 12px;
+    color: red;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+  

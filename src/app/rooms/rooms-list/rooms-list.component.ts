@@ -13,6 +13,7 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
 @Component({
   selector: 'app-rooms-list',
   imports: [MatTableModule, MatButtonModule, MatPaginatorModule],
+
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.css'
 })

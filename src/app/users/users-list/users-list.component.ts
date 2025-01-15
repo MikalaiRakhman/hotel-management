@@ -9,7 +9,6 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
-
 @Component({
   selector: 'app-users-list',
   imports: [MatTableModule, MatButtonModule, MatPaginatorModule],
@@ -72,6 +71,7 @@ export class UsersListComponent implements OnInit {
           },
           error: err => {
             console.error('Something went wrong. User not deleted', err);
+
             this.snackbar.showError(err);
           },
         });

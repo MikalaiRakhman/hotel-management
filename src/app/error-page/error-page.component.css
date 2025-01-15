@@ -1,0 +1,20 @@
+ 
+  .error-page h1 {
+    font-size: 2rem;
+  }
+  
+  .error-page button {
+    margin-top: 20px;
+  }
+
+  .error-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .sad-emoji {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  

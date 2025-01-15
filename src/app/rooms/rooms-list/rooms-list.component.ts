@@ -1,19 +1,19 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { RoomService } from '../../services/room-service/room.service';
 import { Room } from '../../models/room/room.type';
 import { RoomsEditComponent } from '../rooms-edit/rooms-edit.component';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { RoomCreate } from '../../models/room/room-create';
 import { RoomsCreateComponent } from '../rooms-create/rooms-create.component';
-
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-rooms-list',
-  imports: [MatTableModule, MatButtonModule],
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule],
+
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.css'
 })
@@ -23,8 +23,12 @@ export class RoomsListComponent implements OnInit {
   dialog = inject(MatDialog);
 
   displayedColumns: string[] = ['id', 'roomNumber', 'roomType', 'pricePerNight', 'isAvailable', 'actions'];
+  dataSource = new MatTableDataSource<Room>();
+  pagedRooms = new MatTableDataSource<Room>();
+  totalRooms: number = 0;
+  pageSize: number = 5;
 
-  rooms = signal<Array<Room>>([]);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.loadRooms();
@@ -41,8 +45,12 @@ export class RoomsListComponent implements OnInit {
   }
 
   loadRooms(): void {
-    this.roomService.getRooms().subscribe((data: Array<Room>) =>
-      {this.rooms.set(data)})
+    this.roomService.getRooms().subscribe((rooms: Room[]) => {
+      this.dataSource.data = rooms;
+      this.totalRooms = rooms.length;
+      this.paginateRooms();
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   onEditRoom(room: Room): void {
@@ -81,4 +89,15 @@ export class RoomsListComponent implements OnInit {
     });
   }
 
+  paginateRooms(event?: PageEvent): void {
+    const pageIndex = event ? event.pageIndex : 0;
+    const pageSize = event ? event.pageSize : this.pageSize;
+    const startIndex = pageIndex * pageSize;
+    const endIndex = startIndex + pageSize;
+    this.pagedRooms.data = this.dataSource.data.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.paginateRooms(event);
+  }
 }

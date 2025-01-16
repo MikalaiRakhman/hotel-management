@@ -4,10 +4,11 @@ import { MatButtonModule} from '@angular/material/button'
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../services/auth-service/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule, MatButtonModule, RouterLink, MatIconModule],
+  imports: [CommonModule ,MatToolbarModule, MatButtonModule, RouterLink, MatIconModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -26,4 +27,8 @@ export class HeaderComponent {
       this.authService.Logout();
       this.router.navigate(['']);
    }
+
+   isLoggedIn(): boolean {
+    return this.authService.isAuthentficated();
+  }
 }

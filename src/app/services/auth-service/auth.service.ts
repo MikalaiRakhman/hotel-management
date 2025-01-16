@@ -42,4 +42,13 @@ export class AuthService {
     localStorage.removeItem('authToken');
     localStorage.removeItem('refreshToken');
   }
+
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('authToken')) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }

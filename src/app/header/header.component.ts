@@ -29,6 +29,22 @@ export class HeaderComponent {
    }
 
    isLoggedIn(): boolean {
-    return this.authService.isAuthentficated();
+    return this.authService.isAuthenticated();
+  }
+
+  isUser(): boolean {
+    return this.authService.isRoleUser();
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isRoleAdmin();
+  }
+
+  isLoggedInAdmin(): boolean {
+    return this.isLoggedIn() && this.isAdmin();
+  }
+
+  isLoggedInUser(): boolean {
+    return this.isLoggedIn() && this.isUser();
   }
 }

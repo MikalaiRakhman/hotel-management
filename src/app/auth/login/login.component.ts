@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { Router } from '@angular/router';
-import { ILoginRequest } from '../../interfaces/ilogin-request';
+import { ILoginRequest } from '../../interfaces/i-login-request';
 
 @Component({
   selector: 'app-login',

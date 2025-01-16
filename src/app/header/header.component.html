@@ -1,9 +1,9 @@
 <mat-toolbar class="toolbar-header">
     <mat-toolbar-row>
         <button mat-stroked-button [routerLink]="''">Hotel Management</button>
-        <button mat-stroked-button *ngIf="isLoggedIn()" [routerLink]="'/users'">Users</button>
-        <button mat-stroked-button *ngIf="isLoggedIn()" [routerLink]="'/rooms'">Rooms</button>
-        <button mat-stroked-button *ngIf="isLoggedIn()" [routerLink]="'/bookings'">Bookings</button>
+        <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/users'">Users</button>
+        <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/rooms'">Rooms</button>
+        <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/bookings'">Bookings</button>
         <span class="spacer"></span>
             <ng-container>
                 <button mat-stroked-button *ngIf="!isLoggedIn()" [routerLink]="'/register'">Register</button>

@@ -1,9 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from '../api-config/api-config.service';
 import { HttpClient } from '@angular/common/http';
-import { IRegisterRequest } from '../../interfaces/iregister-request';
+import { IRegisterRequest } from '../../interfaces/i-register-request';
 import { firstValueFrom, map, Observable } from 'rxjs';
-import { ILoginRequest } from '../../interfaces/ilogin-request';
+import { ILoginRequest } from '../../interfaces/i-login-request';
+import { jwtDecode } from 'jwt-decode';
+import { IJwtPayload } from '../../interfaces/i-jwt-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +51,31 @@ export class AuthService {
     }
     else {
       return false;
+    }
+  }
+
+  isRoleUser(): boolean {
+    if (this.getToken() === null) {
+      return false;
+    }
+    return this.getRoleFromToken(this.getToken()!) === 'User';
+  }
+
+  isRoleAdmin(): boolean {
+    if (this.getToken() === null) {
+      return false;
+    }
+    return this.getRoleFromToken(this.getToken()!) === 'Admin';
+  }
+
+  private getRoleFromToken(token: string): string {
+    try {      
+        const decoded: IJwtPayload = jwtDecode(token);
+        return decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      }
+      catch (error) { 
+      console.error('Error decoding token:', error); 
+      return '';
     }
   }
 }

@@ -23,6 +23,8 @@ export class LoginComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
 
+    hidePassword = true;
+
     constructor() {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
@@ -48,5 +50,9 @@ export class LoginComponent {
       else {
         console.warn('Form is invalid');
       }
+    }
+
+    togglePasswordVisibility(): void {
+      this.hidePassword = !this.hidePassword;
     }
 }

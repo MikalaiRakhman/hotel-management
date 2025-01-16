@@ -37,4 +37,9 @@ export class AuthService {
   getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
   }
+
+  Logout(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('refreshToken');
+  }
 }

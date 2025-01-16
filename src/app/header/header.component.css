@@ -1,4 +1,40 @@
 .toolbar-header {
-    background-color: bisque;
-    color: #000;
-}
+    background-color: #6200ea;
+    color: white;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mat-toolbar-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mat-toolbar-row button {
+    margin: 0 10px;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  
+  .mat-toolbar-row button:hover {
+    background-color: #f1e4fe;
+    color: #6200ea;
+  }
+  
+  .mat-toolbar-row .spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-icon-button {
+    color: white;
+    margin-left: 8px;
+  }
+  
+  mat-icon-button mat-icon {
+    font-size: 24px;
+  }
+  
+  .mat-icon {
+    color: inherit;
+  }
+  

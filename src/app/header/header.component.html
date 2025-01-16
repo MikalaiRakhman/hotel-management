@@ -8,6 +8,9 @@
             <ng-container>
                 <button mat-stroked-button [routerLink]="'/register'">Register</button>
                 <button mat-stroked-button [routerLink]="'/login'">Log in</button>
+                <button mat-stroked-button (click)="onLogout()">Log out</button>
+                <button mat-icon-button aria-label="User Profile" (click)="goToUserProfile()"> 
+                <mat-icon>person</mat-icon> </button>
             </ng-container>
     </mat-toolbar-row>
 </mat-toolbar>

@@ -7,6 +7,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './auth/auth.guard';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 export const routes: Routes = [
     {
@@ -17,6 +18,10 @@ export const routes: Routes = [
         path:'users', 
         component: UsersListComponent,
         canActivate: [authGuard],
+    },
+    {
+        path:'profile',
+        component: UserProfileComponent,
     },
     {
         path:'rooms',

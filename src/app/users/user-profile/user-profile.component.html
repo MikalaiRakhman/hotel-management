@@ -1,18 +1,22 @@
-<p>user-profile works!</p>
-
-<mat-card>
+<mat-card class="user-profile-card">
     <mat-card-header>
-        <mat-card-title>
-        <h4>User Profile</h4>
-        </mat-card-title>
+      <mat-card-title>
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="assets/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="User icon" />
+              </div>
+          <h4> Profile</h4>          
+        </div>
+      </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-        <p>Id: {{ user!.id }}</p>
-        <p>Email: {{ user!.email }}</p>
-        <p>First Name: {{ user!.firstName }}</p>
-        <p>Last Name: {{ user!.lastName }}</p>
+    <mat-card-content>        
+      <p>Email: {{ user!.email }}</p>
+      <p>First Name: {{ user!.firstName }}</p>
+      <p>Last Name: {{ user!.lastName }}</p>
+      <p>Phone Number: {{ user!.phoneNumber }}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary">Edit</button>        
+      <button mat-raised-button color="primary">Edit</button>        
     </mat-card-actions>
-</mat-card>
+  </mat-card>
+  

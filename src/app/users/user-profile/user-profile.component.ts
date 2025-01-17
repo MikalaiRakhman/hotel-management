@@ -6,10 +6,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { User } from '../../models/user/user.type';
 import { TokenService } from '../../services/token.service';
 import { UserService } from '../../services/user-service/user.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [MatCardModule, MatIconModule, MatListModule, MatTabsModule],
+  imports: [MatCardModule, MatIconModule, MatListModule, MatTabsModule, MatButtonModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })

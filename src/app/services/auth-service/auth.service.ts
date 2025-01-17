@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IRegisterRequest } from '../../interfaces/i-register-request';
 import { firstValueFrom, map, Observable } from 'rxjs';
 import { ILoginRequest } from '../../interfaces/i-login-request';
-import { jwtDecode } from 'jwt-decode';
-import { IJwtPayload } from '../../interfaces/i-jwt-payload';
+import { TokenService } from '../token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +12,7 @@ import { IJwtPayload } from '../../interfaces/i-jwt-payload';
 export class AuthService {
   private config = inject(ApiConfigService);
   private http = inject(HttpClient);
+  private token = inject(TokenService);
   
   async register(userData: IRegisterRequest) {
     try {
@@ -30,15 +30,7 @@ export class AuthService {
       console.error('Login error',error);
       throw error;
     }
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('authToken');
-  }
-
-  getRefreshToken(): string | null {
-    return localStorage.getItem('refreshToken');
-  }
+  }  
 
   Logout(): void {
     localStorage.removeItem('authToken');
@@ -55,27 +47,16 @@ export class AuthService {
   }
 
   isRoleUser(): boolean {
-    if (this.getToken() === null) {
+    if (this.token.getToken() === null) {
       return false;
     }
-    return this.getRoleFromToken(this.getToken()!) === 'User';
+    return this.token.getRoleFromToken(this.token.getToken()!) === 'User';
   }
 
   isRoleAdmin(): boolean {
-    if (this.getToken() === null) {
+    if (this.token.getToken() === null) {
       return false;
     }
-    return this.getRoleFromToken(this.getToken()!) === 'Admin';
-  }
-
-  private getRoleFromToken(token: string): string {
-    try {      
-        const decoded: IJwtPayload = jwtDecode(token);
-        return decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-      }
-      catch (error) { 
-      console.error('Error decoding token:', error); 
-      return '';
-    }
-  }
+    return this.token.getRoleFromToken(this.token.getToken()!) === 'Admin';
+  }  
 }

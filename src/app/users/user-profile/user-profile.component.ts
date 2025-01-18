@@ -7,6 +7,8 @@ import { User } from '../../models/user/user.type';
 import { TokenService } from '../../services/token.service';
 import { UserService } from '../../services/user-service/user.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { UsersEditComponent } from '../users-edit/users-edit.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class UserProfileComponent implements OnInit {
   tokenService = inject(TokenService);
   userService = inject(UserService);
+  dialog = inject(MatDialog);
 
   user: User = {} as User;
   token: string = this.tokenService.getToken()!;
@@ -37,6 +40,12 @@ export class UserProfileComponent implements OnInit {
         email: tempUser.email,
         phoneNumber: tempUser.phoneNumber,
       };
+    });
+  }
+
+  onEditUser(user: User): void {
+      const dialogRef = this.dialog.open(UsersEditComponent, {
+        data: user,        
     });
   }
     

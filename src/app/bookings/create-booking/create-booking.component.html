@@ -1,0 +1,29 @@
+<h1>Create booking</h1>
+
+<h2>Choose date</h2>
+
+
+<form [formGroup]="dateForm">
+    <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+</form>
+
+<div>
+    <button mat-raised-button color="primary" (click)="onSaveDate()">Save Date</button>
+</div>
+
+<h2>Choose available room</h2>
+
+
+
+
+  
+  

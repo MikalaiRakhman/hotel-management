@@ -10,6 +10,7 @@ import { authGuard } from './auth/auth.guard';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
 
+
 export const routes: Routes = [
     {
         path:'',
@@ -34,7 +35,7 @@ export const routes: Routes = [
     },
     {
         path:'create_booking',
-        component: CreateBookingComponent
+        component: CreateBookingComponent      
     },
     {
         path:'register',

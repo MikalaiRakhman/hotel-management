@@ -3,4 +3,6 @@ export type Booking = {
     startDate: string;
     endDate: string;
     totalPrice: number;
+    bookerEmail: string;
+    roomNumber: number;
 }

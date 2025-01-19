@@ -18,7 +18,7 @@ export class BookingsListComponent implements OnInit{
   snackbar = inject(SnackbarService);
   dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['id', 'startDate', 'endDate', 'totalPrice', 'actions'];
+  displayedColumns: string[] = ['id', 'startDate', 'endDate', 'totalPrice', 'bookerEmail', 'roomNumber', 'actions'];
   dataSource = new MatTableDataSource<Booking>();
   pagedBookings = new MatTableDataSource<Booking>();
   totalBookings: number = 0;

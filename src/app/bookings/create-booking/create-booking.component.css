@@ -1,2 +1,12 @@
-
+mat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2vh;
+  }
   
+  mat-header-cell,
+  mat-cell {
+    padding: 1rem;
+    flex: 1;
+    text-align: left;
+  }

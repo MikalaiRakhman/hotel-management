@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiConfigService } from '../api-config/api-config.service';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Booking } from '../../models/booking/booking.type';
+import { CreateBookingCommand } from '../../interfaces/i-create-booking-command';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class BookingService {
 
   deleteBooking(id: string): Observable<void> {
     return this.http.delete<void>(`${this.api.bookingsUrl}/${id}`).pipe(catchError(this.handleError));
+  }
+
+  createBooking(command: CreateBookingCommand): Observable<any> {
+    return this.http.post<void>(`${this.api.bookingsUrl}`, command)
+    .pipe(catchError(this.handleError));
   }
 
   private handleError(error: any) {

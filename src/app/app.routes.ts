@@ -32,11 +32,7 @@ export const routes: Routes = [
     {
         path:'bookings',
         component: BookingsListComponent
-    },
-    {
-        path:'create_booking',
-        component: CreateBookingComponent      
-    },
+    },    
     {
         path:'register',
         component: RegisterComponent

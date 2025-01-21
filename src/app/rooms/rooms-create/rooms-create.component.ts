@@ -8,10 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { RoomService } from '../../services/room-service/room.service';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { Room } from '../../models/room/room.type';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-rooms-create',
-  imports: [CommonModule, MatButtonModule, MatDialogModule, MatFormFieldModule, FormsModule, MatInputModule],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatFormFieldModule, FormsModule, MatInputModule, MatSelectModule],
   templateUrl: './rooms-create.component.html',
   styleUrl: './rooms-create.component.css'
 })
@@ -38,6 +39,7 @@ export class RoomsCreateComponent {
       .subscribe({
         next: () => {
           this.dialogRef.close(this.room);
+          window.location.reload();
         },
         error: err => this.snackbar.showError(err),
       });

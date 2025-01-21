@@ -3,31 +3,46 @@
 </div>
 
 <div class="table-container">
-  <table mat-table [dataSource]="pagedRooms" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
-      <td mat-cell *matCellDef="let user"> {{user.id}} </td>
-    </ng-container>
+  <table mat-table [dataSource]="pagedRooms" 
+  matSort (matSortChange)="announceSortChange($event)" 
+  class="mat-elevation-z8">
 
     <ng-container matColumnDef="roomNumber">
-      <th mat-header-cell *matHeaderCellDef>Room number</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Room number</th>
       <td mat-cell *matCellDef="let room"> {{room.roomNumber}} </td>
     </ng-container>
 
     <ng-container matColumnDef="roomType">
-      <th mat-header-cell *matHeaderCellDef>Type</th>
-      <td mat-cell *matCellDef="let room"> {{room.roomType}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by type">Type</th>
+      <td mat-cell *matCellDef="let room"> 
+        @if (room.roomType === 1) {
+          Single
+        }
+        @else if (room.roomType === 2) {
+          Double
+        } 
+        @else if (room.roomType === 3) {
+          King
+        }
+        @else if (room.roomType === 4) {
+          Suite
+        } </td>
     </ng-container>
 
     <ng-container matColumnDef="pricePerNight">
-      <th mat-header-cell *matHeaderCellDef>Price per night</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price">Price per night</th>
       <td mat-cell *matCellDef="let room"> {{room.pricePerNight}} </td>
     </ng-container>
 
     <ng-container matColumnDef="isAvailable">
-        <th mat-header-cell *matHeaderCellDef>Is available</th>
-        <td mat-cell *matCellDef="let room"> {{room.isAvailable}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by availability">Is available</th>
+        <td mat-cell *matCellDef="let room"> 
+          @if(room.isAvailable === true) {
+            Yes
+          } @else if (room.isAvailable === false) {
+            No
+          }
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">

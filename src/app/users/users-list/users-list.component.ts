@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table'
 import { User } from '../../models/user/user.type'
 import { UserService } from '../../services/user-service/user.service';
@@ -8,26 +8,33 @@ import { UsersEditComponent } from '../users-edit/users-edit.component';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 
 
 @Component({
   selector: 'app-users-list',
-  imports: [MatTableModule, MatButtonModule, MatPaginatorModule],
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, MatSortModule],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.css'
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, AfterViewChecked {  
   userService = inject(UserService);
   snackbar = inject(SnackbarService);
   dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'actions']
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phoneNumber', 'actions']
   dataSource = new MatTableDataSource<User>();
   pagedUsers = new MatTableDataSource<User>();
   totalUsers: number = 0;
   pageSize: number = 5;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  private _liveAnnouncer: any;
+
+  ngAfterViewChecked(): void {
+    this.pagedUsers.sort = this.sort;
+  }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -40,20 +47,7 @@ export class UsersListComponent implements OnInit {
       this.paginateUsers();
       this.dataSource.paginator = this.paginator;
       })
-  }
-
-  onEditUser(user: User): void {
-    const dialogRef = this.dialog.open(UsersEditComponent, {
-      data: user,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('User data after edit', result);
-        this.loadUsers();
-      }
-    })
-  }
+  }  
 
   onDeleteUser(userId: string): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -68,7 +62,7 @@ export class UsersListComponent implements OnInit {
       if (result) {
         this.userService.deleteUser(userId).subscribe({
           next: () => {
-            console.log('user deleted');
+            window.location.reload();
           },
           error: err => {
             console.error('Something went wrong. User not deleted', err);
@@ -90,4 +84,12 @@ export class UsersListComponent implements OnInit {
   onPageChange(event: PageEvent): void {
     this.paginateUsers(event);
   }
+
+  announceSortChange(sortState: Sort) {    
+      if (sortState.direction) {
+        this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+      } else {
+        this._liveAnnouncer.announce('Sorting cleared');
+      }
+    }
 }

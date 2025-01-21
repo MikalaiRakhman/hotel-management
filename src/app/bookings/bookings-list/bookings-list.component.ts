@@ -6,6 +6,8 @@ import { BookingService } from '../../services/booking/booking.service';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { CreateBookingComponent } from '../create-booking/create-booking.component';
 
 @Component({
   selector: 'app-bookings-list',
@@ -18,7 +20,7 @@ export class BookingsListComponent implements OnInit{
   snackbar = inject(SnackbarService);
   dialog = inject(MatDialog);
 
-  displayedColumns: string[] = ['id', 'startDate', 'endDate', 'totalPrice', 'bookerEmail', 'roomNumber', 'actions'];
+  displayedColumns: string[] = ['startDate', 'endDate', 'totalPrice', 'bookerEmail', 'roomNumber', 'actions'];
   dataSource = new MatTableDataSource<Booking>();
   pagedBookings = new MatTableDataSource<Booking>();
   totalBookings: number = 0;
@@ -37,6 +39,40 @@ export class BookingsListComponent implements OnInit{
       this.paginateBookings();
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  onCreateBooking(): void {
+    const dialogRef = this.dialog.open(CreateBookingComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        window.location.reload();
+      }
+    })
+  }
+
+  onDeleteBooking(id: string): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          width: '500px',
+          data: {
+            title: 'Confirm deletion',
+            message: 'Are you sure you want to delete this booking?',
+          },
+        });
+    
+        dialogRef.afterClosed().subscribe((result: boolean) => {
+          if (result) {
+            this.bookingService.deleteBooking(id).subscribe({
+              next: () => {
+                window.location.reload();
+              },
+              error: err => {
+                console.error('Something went wrong. Booking not deleted.', err);
+                this.snackbar.showError(err);
+              },
+            });
+          }
+        });
   }
 
   paginateBookings(event?: PageEvent): void {

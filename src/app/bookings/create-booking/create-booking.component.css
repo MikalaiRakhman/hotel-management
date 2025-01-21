@@ -1,12 +1,12 @@
-mat-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2vh;
-  }
-  
-  mat-header-cell,
-  mat-cell {
-    padding: 1rem;
-    flex: 1;
-    text-align: left;
-  }
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-content {
+  padding: 16px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}

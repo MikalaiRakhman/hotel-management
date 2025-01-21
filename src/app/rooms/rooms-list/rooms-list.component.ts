@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -9,25 +9,33 @@ import { RoomsEditComponent } from '../rooms-edit/rooms-edit.component';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { RoomsCreateComponent } from '../rooms-create/rooms-create.component';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-rooms-list',
-  imports: [MatTableModule, MatButtonModule, MatPaginatorModule],
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, MatSortModule],
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.css'
 })
-export class RoomsListComponent implements OnInit {
+export class RoomsListComponent implements OnInit, AfterViewInit {  
   roomService = inject(RoomService);
   snackbar = inject(SnackbarService);
   dialog = inject(MatDialog);
+  private _liveAnnouncer = inject(LiveAnnouncer);
 
-  displayedColumns: string[] = ['id', 'roomNumber', 'roomType', 'pricePerNight', 'isAvailable', 'actions'];
+  displayedColumns: string[] = ['roomNumber', 'roomType', 'pricePerNight', 'isAvailable', 'actions'];
   dataSource = new MatTableDataSource<Room>();
   pagedRooms = new MatTableDataSource<Room>();
   totalRooms: number = 0;
   pageSize: number = 5;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngAfterViewInit(): void {
+    this.pagedRooms.sort = this.sort;
+  }
 
   ngOnInit(): void {
     this.loadRooms();
@@ -45,10 +53,10 @@ export class RoomsListComponent implements OnInit {
 
   loadRooms(): void {
     this.roomService.getRooms().subscribe((rooms: Room[]) => {
-      this.dataSource.data = rooms;
+      this.dataSource.data = rooms;      
       this.totalRooms = rooms.length;
       this.paginateRooms();
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;      
     });
   }
 
@@ -59,7 +67,7 @@ export class RoomsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Room data after edit', result);
+        window.location.reload();
       }
     })
   }
@@ -77,7 +85,7 @@ export class RoomsListComponent implements OnInit {
       if (result) {
         this.roomService.deleteRoom(roomId).subscribe({
           next: () => {
-            console.log('room deleted');
+            window.location.reload();
           },
           error: err => {
             console.error('Something went wrong. Room not deleted.', err);
@@ -98,5 +106,13 @@ export class RoomsListComponent implements OnInit {
 
   onPageChange(event: PageEvent): void {
     this.paginateRooms(event);
+  }
+
+  announceSortChange(sortState: Sort) {    
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

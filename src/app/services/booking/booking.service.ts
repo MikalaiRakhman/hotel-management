@@ -14,7 +14,11 @@ export class BookingService {
   getBookings(): Observable<Array<Booking>> {
     return this.http.get<Array<Booking>>(this.api.bookingsUrl)
     .pipe(catchError(this.handleError));
-  }  
+  }
+
+  deleteBooking(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.api.bookingsUrl}/${id}`).pipe(catchError(this.handleError));
+  }
 
   private handleError(error: any) {
         console.error('Error occured!', error);

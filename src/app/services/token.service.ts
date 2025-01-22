@@ -15,6 +15,17 @@ export class TokenService {
     return localStorage.getItem('refreshToken');
   }
 
+  getIdFromToken(token: string): string {
+    try {      
+      const decoded: IJwtPayload = jwtDecode(token);
+      return decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    }
+    catch (error) { 
+    console.error('Error decoding token:', error); 
+    return '';
+  }
+  }
+
   getRoleFromToken(token: string): string {
     try {      
         const decoded: IJwtPayload = jwtDecode(token);

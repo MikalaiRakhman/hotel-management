@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './auth/auth.guard';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { CreateBookingComponent } from './bookings/create-booking/create-booking.component';
+import { UserCreateBookingComponent } from './users/user-create-booking/user-create-booking.component';
 
 
 export const routes: Routes = [
@@ -32,7 +33,11 @@ export const routes: Routes = [
     {
         path:'bookings',
         component: BookingsListComponent
-    },    
+    },
+    {
+        path: 'user_create_booking',
+        component: UserCreateBookingComponent
+    },
     {
         path:'register',
         component: RegisterComponent

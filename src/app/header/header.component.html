@@ -4,7 +4,7 @@
         <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/users'">Users</button>
         <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/rooms'">Rooms</button>
         <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/bookings'">Bookings</button>
-        <button mat-stroked-button *ngIf="isLoggedInUser()" [routerLink]="'/create_booking'">Create Booking</button>
+        <button mat-stroked-button *ngIf="isLoggedInUser()" [routerLink]="'/user_create_booking'">Create Booking</button>
         <span class="spacer"></span>
             <ng-container>
                 <button mat-stroked-button *ngIf="!isLoggedIn()" [routerLink]="'/register'">Register</button>

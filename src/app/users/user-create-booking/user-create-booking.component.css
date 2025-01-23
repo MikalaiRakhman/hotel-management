@@ -1,11 +1,9 @@
-/* Title */
 .title {
   text-align: center;
   margin-bottom: 20px;
   color: #3f51b5;
 }
 
-/* Date Selection Section */
 .date-selection {
   display: flex;
   justify-content: center;
@@ -23,7 +21,6 @@
   margin-top: 10px;
 }
 
-/* Table Styles */
 .table-container {
   width: 80%;
   margin: 0 auto;
@@ -46,7 +43,6 @@
   min-width: 80px;
 }
 
-/* Confirmation Section */
 .confirmation-section {
   text-align: center;
   margin-top: 30px;

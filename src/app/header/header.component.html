@@ -1,17 +1,19 @@
 <mat-toolbar class="toolbar-header">
     <mat-toolbar-row>
-        <button mat-stroked-button [routerLink]="''">Hotel Management</button>
-        <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/users'">Users</button>
-        <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/rooms'">Rooms</button>
-        <button mat-stroked-button *ngIf="isLoggedInAdmin()" [routerLink]="'/bookings'">Bookings</button>
-        <button mat-stroked-button *ngIf="isLoggedInUser()" [routerLink]="'/user_create_booking'">Create Booking</button>
-        <span class="spacer"></span>
-            <ng-container>
-                <button mat-stroked-button *ngIf="!isLoggedIn()" [routerLink]="'/register'">Register</button>
-                <button mat-stroked-button *ngIf="!isLoggedIn()" [routerLink]="'/login'">Log in</button>
-                <button mat-stroked-button *ngIf="isLoggedIn()" (click)="onLogout()">Log out</button>
-                <button mat-icon-button *ngIf="isLoggedIn()" aria-label="User Profile" (click)="goToUserProfile()"> 
-                <mat-icon>person</mat-icon> </button>
-            </ng-container>
+      <button mat-stroked-button color="primary" [routerLink]="''">Hotel Management</button>
+      <button mat-stroked-button *ngIf="isLoggedInAdmin()" color="accent" [routerLink]="'/users'">Users</button>
+      <button mat-stroked-button *ngIf="isLoggedInAdmin()" color="accent" [routerLink]="'/rooms'">Rooms</button>
+      <button mat-stroked-button *ngIf="isLoggedInAdmin()" color="accent" [routerLink]="'/bookings'">Bookings</button>
+      <button mat-stroked-button *ngIf="isLoggedInUser()" color="accent" [routerLink]="'/user_create_booking'">Create Booking</button>
+      <span class="spacer"></span>
+      <ng-container>
+        <button mat-stroked-button *ngIf="!isLoggedIn()" color="primary" [routerLink]="'/register'">Register</button>
+        <button mat-stroked-button *ngIf="!isLoggedIn()" color="primary" [routerLink]="'/login'">Log in</button>
+        <button mat-stroked-button *ngIf="isLoggedIn()" color="warn" (click)="onLogout()">Log out</button>
+        <button mat-icon-button *ngIf="isLoggedIn()" aria-label="User Profile" (click)="goToUserProfile()">
+          <mat-icon>person</mat-icon>
+        </button>
+      </ng-container>
     </mat-toolbar-row>
-</mat-toolbar>
+  </mat-toolbar>
+  

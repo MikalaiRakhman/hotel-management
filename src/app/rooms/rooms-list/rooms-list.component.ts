@@ -60,6 +60,22 @@ export class RoomsListComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getRoomTypeName(roomType: number): string {
+    switch(roomType) {
+      case 1:
+        return 'Single';
+      case 2:
+        return 'Double';
+      case 3:
+        return 'King';
+      case 4:
+        return 'Suite';
+      default:
+        return 'Unknown';
+    }
+  }
+  
+
   onEditRoom(room: Room): void {
     const dialogRef = this.dialog.open(RoomsEditComponent, {
       data: room,

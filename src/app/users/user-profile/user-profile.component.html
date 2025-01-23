@@ -1,51 +1,45 @@
 <mat-card class="user-profile-card">
-    <mat-card-header>
-      <mat-card-title>
-        <div class="profile-header">
-            <div class="profile-avatar">
-                <img src="assets/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="User icon" />
-              </div>
-          <h4> Profile</h4>          
+  <mat-card-header>
+    <mat-card-title>
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img src="assets/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="User icon" />
         </div>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>        
-      <p>Email: {{ user!.email }}</p>
-      <p>First Name: {{ user!.firstName }}</p>
-      <p>Last Name: {{ user!.lastName }}</p>
-      <p>Phone Number: {{ user!.phoneNumber }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="onEditUser(user)">Edit</button>        
-    </mat-card-actions>
-  </mat-card>
+        <h4> Profile </h4>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="profile-items">
+    <div class="profile-item"><span class="label">Email:</span><span class="value">{{ user!.email }}</span></div>
+    <div class="profile-item"><span class="label">First Name:</span><span class="value">{{ user!.firstName }}</span></div>
+    <div class="profile-item"><span class="label">Last Name:</span><span class="value">{{ user!.lastName }}</span></div>
+    <div class="profile-item"><span class="label">Phone Number:</span><span class="value">{{ user!.phoneNumber }}</span></div>
+  </mat-card-content>
+  <mat-card-actions class="profile-card-actions">
+    <button mat-raised-button color="primary" (click)="onEditUser(user)">Edit</button>
+  </mat-card-actions>
+</mat-card>
 
-  <div class="table-container" *ngIf="showTable">
-    <h3>My bookings</h3>
-    <table mat-table [dataSource]="userBookings" class="mat-elevation-z8">
-    
-      <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef>Start date</th>
-        <td mat-cell *matCellDef="let booking"> {{booking.startDate}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="endDate">
-        <th mat-header-cell *matHeaderCellDef>End date</th>
-        <td mat-cell *matCellDef="let booking"> {{booking.endDate}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="totalPrice">
-        <th mat-header-cell *matHeaderCellDef>Total price</th>
-        <td mat-cell *matCellDef="let booking"> {{booking.totalPrice}} </td>
-      </ng-container>    
-  
-      <ng-container matColumnDef="roomNumber">
-        <th mat-header-cell *matHeaderCellDef>Room number</th>
-        <td mat-cell *matCellDef="let booking"> {{booking.roomNumber}} </td>
-      </ng-container>       
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table> 
-  </div>
-  
+<div class="table-container" *ngIf="showTable">
+  <h3 class="table-title">My bookings</h3>
+  <table mat-table [dataSource]="userBookings" class="mat-elevation-z8 custom-table">
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef>Start date</th>
+      <td mat-cell *matCellDef="let booking">{{ booking.startDate | date: 'yyyy-MM-dd' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef>End date</th>
+      <td mat-cell *matCellDef="let booking">{{ booking.endDate | date: 'yyyy-MM-dd' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef>Total price</th>
+      <td mat-cell *matCellDef="let booking">{{ booking.totalPrice | currency: 'USD' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="roomNumber">
+      <th mat-header-cell *matHeaderCellDef>Room number</th>
+      <td mat-cell *matCellDef="let booking">{{ booking.roomNumber }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

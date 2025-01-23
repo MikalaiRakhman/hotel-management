@@ -1,12 +1,41 @@
-mat-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2vh;
-  }
-  
-  mat-header-cell,
-  mat-cell {
-    padding: 1rem;
-    flex: 1;
-    text-align: left;
-  }
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-room-button {
+  margin-bottom: 16px;
+  text-align: center; /* Align the "Create new room" button to the right */
+}
+
+.table-container {
+  width: 80%;
+  margin: 16px auto; /* Adding top margin to create space between button and table */
+}
+
+.custom-table {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.mat-header-cell, .mat-cell {
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+.mat-header-row {
+  background-color: #f5f5f5;
+}
+.edit-button {
+  margin-right: 8px;
+}
+
+.mat-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-cell button {
+  min-width: 80px;
+}

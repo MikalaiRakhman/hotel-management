@@ -38,8 +38,7 @@ export class CreateBookingComponent implements OnInit {
   bookingService = inject(BookingService);
   userService = inject(UserService);
   roomService = inject(RoomService);
-  snackbar = inject(SnackbarService);
-
+  snackbar = inject(SnackbarService);  
   startDate?: Date;
   endDate?: Date;
   clientEmail?: string;
@@ -107,8 +106,7 @@ export class CreateBookingComponent implements OnInit {
     this.bookingService.createBooking(command)
     .subscribe({
       next: () => {
-        this.dialogRef.close();
-        window.location.reload();
+        this.dialogRef.close();        
       },
       error: err => this.snackbar.showError(err),
     });    

@@ -23,9 +23,12 @@ export class RoomsEditComponent {
 
   room: Room;
 
+  checkInDay?: Date;
+  checkOutDay?: Date;
+
   constructor(
     public dialogRef: MatDialogRef<RoomsEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Room
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.room = { ...data };
   }
